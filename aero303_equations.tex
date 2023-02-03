@@ -1,0 +1,94 @@
+\documentclass{article}
+
+\usepackage{amssymb, amsmath, amsthm, makeidx}
+\setlength{\parindent}{0ex}
+\title{Gas Dynamics Equations}
+\date{AERO 303 - Winter 2023}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Compression of a Fluid Element}
+\[ \tau = \frac{-1}{v} \frac{dv}{dP} = \frac{1}{\rho} \frac{d\rho}{dP} \qquad \left[ \frac{\text{m}^2}{\text{N}} \right] \] % compression of a fluid element
+For gases $\tau \approx 10^{-5}$ m$^2$/N. For liquids $ \tau \approx 5 \times 10^{-10}$  m$^2$/N. 
+
+\[ \tau_T = \frac{-1}{v} \left( \frac{dv}{dP} \right)_T \qquad\qquad \tau_S = \frac{-1}{v} \left( \frac{dv}{dP} \right)_S \] % heat extraction reqd
+Heat extraction required for left. Isentropic required for right. 
+
+\section{Energy}
+\[ \Delta E = Q - W \]
+\[ h = u + Pv \]
+\[ u = u(T, \rho) \qquad h = h(T, P) \]
+
+\section{Calorically Perfect}
+\[ C_p - C_v = R_{gas} \]
+\[ u = C_v\,T \qquad h = C_p\,T \]
+\[ s_2 - s_1 = c_P\, \ln \left( \frac{T_2}{T_1} \right) - R\, \ln \left(\frac{P_2}{P_1} \right) \]
+\[ s_2 - s_1 = c_V\, \ln \left( \frac{T_2}{T_1} \right) + R\, \ln \left(\frac{v_2}{v_1} \right) \]
+Further Assumption: Isentropic
+\[ \frac{P_2}{P_1} = \left( \frac{\rho_2}{\rho_1} \right)^\gamma = \left( \frac{T_2}{T_1} \right)^{\gamma/(\gamma-1)} \]
+\[ \frac{P_2}{P_1} = \left( \frac{T_2}{T_1} \right)^{\gamma / (\gamma-1)} \qquad\qquad \frac{\rho_2}{\rho_1} = \left( \frac{T_2}{T_1} \right)^{1 / (\gamma-1)} \]
+
+\section{Fluid Mechanics}
+\[ \frac{\partial}{\partial t} \int_\forall \rho \, d\forall + \int_S \rho \vec{V} \cdot d\vec{S} = 0 \tag{Continuity} \]
+\[ \frac{\partial}{\partial t} \int_\forall \rho \vec{V} \cdot d\forall + \int_S (\rho \vec{V} \cdot d\vec{S}) \vec{V} = \int_\forall \rho \vec{f} \, d\forall - \int_S P \, d\vec{S} \tag{Momentum} \]
+\[ \frac{\partial}{\partial t} \int_\forall \rho (u + \frac{V^2}{2} + gz) dV + \int_S \rho (u + Pv + \frac{V^2}{2} + gz) \vec{V} \cdot d\vec{S} = \int_\forall \dot{q} \rho \, d\forall + \int_\forall \rho(\vec{f}\cdot\vec{V}) d\forall \tag{Energy} \]
+
+\section{Static Fire Thrust}
+\[ T = \dot{m_e} V_e - \dot{m_i} V_\infty + (P_e - P_\infty) A_e \tag{Jet} \]
+\[ T = \dot{m_e} V_e + (P_e - P_\infty) A_e \tag{Rocket} \]
+
+\section{1D-Flow}
+Assumptions: Steady state, no body forces
+\[ \rho_1 u_1 = \rho_2 u_2 \tag{Continuity} \]
+\[ P_1 + \rho_1 u_1^2 = P_2 + \rho_2 u_2^2 \tag{Momentum} \]
+\[ q + h_1 + \frac{u_1^2}{2} = h_2 + \frac{u_2^2}{2} \tag{Energy} \]
+Further Assumptions: Isentropic, Calorically Perfect, Polytropic ($Pv^\gamma=\text{constant})$
+\[ \frac{T_0}{T} = 1 + \frac{\gamma-1}{2} M^2 \]
+\[ \frac{P_0}{P} = \left( 1 + \frac{\gamma-1}{2} M^2 \right)^{\gamma/\gamma-1} \]
+\[ \frac{\rho_0}{\rho} = \left( 1 + \frac{\gamma-1}{2} M^2 \right)^{1/\gamma-1} \]
+
+\subsection{w/ Heat Addition}
+\[ q = C_P (T_{02} - T_{01}) \]
+Note: The following equation can be used for adiabatic or not. 
+\[ \frac{P_2}{P_1} = \frac{1+\gamma M_1^2}{1+\gamma M_2^2} \]
+
+\section{Speed of Sound}
+Assumptions: Isentropic
+\[ a = \sqrt{\left( \frac{\partial P}{\partial \rho} \right)_S} = \sqrt{\frac{v}{\tau_S}} \]
+Further Assumption: Ideal Gas
+\[ a = \sqrt{\gamma RT} = \sqrt{ \frac{\gamma P}{\rho} } \]
+
+\section{Normal Shocks}
+Note: Behind the shock, Mach is always $<$ 1
+
+Assumptions: Adiabatic, 1D, Calorically Perfect
+\[ M^2 = \frac{2}{\left[ (\gamma+1)/{M^*}^2 \right] - (\gamma-1)} \]
+\[ a^{*^2} = u_1 u_2 \tag{Prandtl Relation} \]
+\[ M_2^* = \frac{1}{M_1^*} \]
+\[ M_2^2 = \frac{1+[\frac{\gamma-1}{2}] M_1^2}{\gamma M_1^2 - \frac{\gamma-1}{2}} \]
+\[ {M_1^*}^2 = \frac{\rho_2}{\rho_1} = \frac{u_1}{u_2} = \frac{(\gamma+1)M_1^2}{2+(\gamma-1)M_1^2} \]
+\[ \frac{P_2}{P_1} = 1 +\frac{2\gamma}{\gamma+1}(M_1^2-1) \]
+Plug above 2 equations in for $P_2/P_1$ and $\rho_2/\rho_1$ below. Remember to invert the latter.
+\[ \frac{T_2}{T_1} = \frac{h_2}{h_1} = \frac{P_2}{P_1} \frac{\rho_1}{\rho_2} \]
+Note: If calorically perfect, $P$, $\rho$, $T$, $h$, and $u$ are all a function of $M_1$, aka $ f(M_1) $.
+
+\subsection{Total Conditions}
+Note: $ T_{01} = T_{02} $ and $ h_{01} = h_{02} $.
+\[ C_P T + \frac{u_1^2}{2} = C_P T_0 \]
+Note: $P_{02} < P_{01} $ because of 2nd Law. (@ M=1, $P_{02} = P_{01} $). 
+\[ \frac{P_{02}}{P_{01}} = e^{\Delta S/R} \]
+
+\section{come back to}
+\[ M = \frac{V}{a} \]
+\[ dS = \frac{\delta q}{T} \]
+\[ Tds = du + Pdv \]
+\[ Tds = dh - vdP \]
+\[ \frac{a_1^2}{\gamma-1} + \frac{u_1^2}{2} = \frac{a_2^2}{\gamma-1} + \frac{u_2^2}{2} \]
+\[ \frac{a^2}{\gamma-1} + \frac{u^2}{2} = \frac{\gamma+1}{2(\gamma-1)} + {a^*}^2 \]
+\[ \frac{a^2}{\gamma-1} + \frac{u^2}{2} = \frac{a_0^2}{\gamma-1} \]
+There's another equation after above equation. Double check it before putting
+
+
+\end{document}
